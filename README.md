@@ -10,6 +10,21 @@ No problem! You can do the exact same method mentioned above to unarchive a bill
 \
 \
 \
+---
+# TO DO #
+
+- [] Mensagem de erro POST
+- [] Mensagem de erro UPDATE
+- [] Validação dos campos (tamanho, tipo)
+- [] Navbar superior
+- [] Implementar ícone da abelha
+- [] Identidade visual
+
+\
+\
+---
+\
+
 **Upcoming features:**
 - Authentication
 - Dark Theme

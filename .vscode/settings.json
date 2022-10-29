@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/496894a4-58a6-491b-aa38-3aefce0695f3/AppServices/subscriptions/496894a4-58a6-491b-aa38-3aefce0695f3/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/beelling",
+    "appService.deploySubpath": "."
+}
