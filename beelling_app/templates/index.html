@@ -4,45 +4,80 @@
     <meta charset="UTF-8">
     <title>Beelling</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-</head>
-<body>
-    <div class="col-8 m-auto pt-2 pb-2 text-center">
-        <h1>Beelling App</h1>
-    </div>
-    <div class="col-8 m-auto pt-2 pb-2 text-center">
-        <a href="/form" class="btn btn-success">Add</a>
-    </div>
-    <div class="col-8 m-auto pt-2 pb-2 text-center">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Value</th>
-              <th scope="col">Due Date</th>
-              <th scope="col">Category</th>
-              <th scope="col">Is Active</th>
-              <th scope="col">More</th>
-            </tr>
-          </thead>
-          <tbody>
-          {% for dbs in db %}
-            <tr>
-                <td>{{dbs.Name}}</td>
-                <td>{{dbs.Value}}</td>
-                <td>{{dbs.DueDate}}</td>
-                <td>{{dbs.Category}}</td>
-                <td>{{dbs.IsActive}}</td>
-                <td>
-                    <a href="/view/{{dbs.id}}/" class="btn btn-primary">View</a>
-                    <a href="/edit/{{dbs.id}}/" class="btn btn-primary">Edit</a>
-                    <a href="/delete/{{dbs.id}}/" class="btn btn-danger btnDel">Delete</a>
-                </td>
-            </tr>
-          {% endfor %}
-          </tbody>
-        </table>
-    </div>
+    <link rel="icon" type="image/x-icon" href="https://i.imgur.com/wrJba9i.png">
+    {% load static %}
+    <link href="{% static 'styles.css' %}" rel="stylesheet">
+  </head>
+<body class="d-flex flex-column justify-content-between">
+    <nav class="navbar mb-50" style="background-color: #ffc107;">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img src="https://i.imgur.com/F1z1QCd.png" alt="Beelling Logo" width="30" height="30" class="d-inline-block align-text-top mr-15">
+          Beelling
+        </a>
+      </div>
+    </nav>
+    <main>
+      <div class="col-7 m-auto pt-15 pb-10 text-center">
+        <h2>Welcome to Beelling!</h2>
+        <p>Use Beelling to group your bills in one place. You can add, edit, delete and view all your bills in a simple way.</p>
+      </div>
+      <div class="col-7 m-auto pt-2 pb-2 text-center">
+          <table class="table">
+            <thead>
+              <tr class="table-dark text-start">
+                <th scope="col">Name</th>
+                <th scope="col">Value</th>
+                <th scope="col">Due Date</th>
+                <th scope="col">Category</th>
+                <th scope="col" class="text-center">More</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for dbs in db %}
+              {% if dbs.IsActive %}
+                <tr class="text-start {% if now > dbs.DueDate %} table-danger {% endif %}">
+                    <td>{{dbs.Name}}</td>
+                    <td>R$ {{dbs.Value}}</td>
+                    <td>{{dbs.DueDate|date:"d/m/Y"}}</td>
+                    <td>{{dbs.Category}}</td>
+                    <div class="container">
+                      <td class="text-center justify-content-around">
+                          <a href="/view/{{dbs.id}}/" class="text-decoration-none text-reset">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 20 20">
+                              <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                              <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                            </svg>
+                          </a>
+                          <a href="/edit/{{dbs.id}}/" class="text-decoration-none text-reset">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 20 20">
+                              <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+                            </svg>                        
+                          </a>
+                          <a href="/delete/{{dbs.id}}/" class="btnDel text-decoration-none text-reset">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 20 20">
+                              <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                            </svg>
+                          </a>
+                      </td>
+                    </div>
+                </tr>
+              {% endif %}
+            {% endfor %}
+            </tbody>
+          </table>
+      </div>
+      <div class="col-7 m-auto pt-2 pb-2 text-end">
+        <a href="/form" class="btn btn-warning col-2">+ Add</a>
+      </div>
+    </main>
 
+    <footer class="text-center text-lg-start bg-light text-muted">
+      <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+        Beelling © 2022 - Feel free to check my github! 
+        <a class="text-reset fw-bold" href="https://github.com/ggonc"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-4.466 19.59c-.405.078-.534-.171-.534-.384v-2.195c0-.747-.262-1.233-.55-1.481 1.782-.198 3.654-.875 3.654-3.947 0-.874-.312-1.588-.823-2.147.082-.202.356-1.016-.079-2.117 0 0-.671-.215-2.198.82-.64-.18-1.324-.267-2.004-.271-.68.003-1.364.091-2.003.269-1.528-1.035-2.2-.82-2.2-.82-.434 1.102-.16 1.915-.077 2.118-.512.56-.824 1.273-.824 2.147 0 3.064 1.867 3.751 3.645 3.954-.229.2-.436.552-.508 1.07-.457.204-1.614.557-2.328-.666 0 0-.423-.768-1.227-.825 0 0-.78-.01-.055.487 0 0 .525.246.889 1.17 0 0 .463 1.428 2.688.944v1.489c0 .211-.129.459-.528.385-3.18-1.057-5.472-4.056-5.472-7.59 0-4.419 3.582-8 8-8s8 3.581 8 8c0 3.533-2.289 6.531-5.466 7.59z"/></svg></a>
+      </div>
+    </footer>
     {% load static %}
     <script src="{% static 'javascript.js' %}"></script>
 </body>

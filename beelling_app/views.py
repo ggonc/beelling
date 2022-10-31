@@ -5,7 +5,7 @@ from beelling_app.models import Bill
 # Create your views here.
 def home(request):
     data = {}
-    data['db'] = Bill.objects.all()
+    data['db'] = Bill.objects.all().order_by('-DueDate').values
     return render(request, 'index.html', data)
 
 def form(request):

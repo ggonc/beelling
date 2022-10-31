@@ -6,7 +6,7 @@
         let btnDel = doc.querySelectorAll('.btnDel');
         for(let i=0; i < btnDel.length; i++){
             btnDel[i].addEventListener('click', function(event){
-                if(confirm('Deseja apagar esse dado?')){
+                if(confirm('Do you want to delete this bill?')){
                     return true;
                 } else {
                     event.preventDefault();
@@ -29,9 +29,21 @@
             ajax.onreadystatechange = function(){
                 if(ajax.status === 200 && ajax.readyState === 4){
                     let result = doc.querySelector('#result');
-                    result.innerHTML = 'Operação realizada com sucesso!';
-                    result.classList.add('alert');
-                    result.classList.add('alert-success');
+                    result.innerHTML = 'Bill saved!';
+                    if ( result.classList.contains('alert-danger')){
+                        result.classList.remove('alert-danger')
+                        result.classList.add('alert-success');
+                    } else {
+                        result.classList.add('alert-success');
+                    }
+                } else {
+                    result.innerHTML = 'Invalid request! Check if the fields are valid.';
+                    if ( result.classList.contains('alert-success')){
+                        result.classList.remove('alert-success')
+                        result.classList.add('alert-danger');
+                    } else {
+                        result.classList.add('alert-danger');
+                    }
                 }
             }
             ajax.send(data);
