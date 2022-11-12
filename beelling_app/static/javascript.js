@@ -30,19 +30,19 @@
                 if(ajax.status === 200 && ajax.readyState === 4){
                     let result = doc.querySelector('#result');
                     result.innerHTML = 'Bill saved!';
-                    if ( result.classList.contains('alert-danger')){
-                        result.classList.remove('alert-danger')
-                        result.classList.add('alert-success');
+                    if ( result.classList.contains('alert alert-danger')){
+                        result.classList.remove('alert alert-danger')
+                        result.classList.add('alert alert-success');
                     } else {
-                        result.classList.add('alert-success');
+                        result.classList.add('alert alert-success');
                     }
                 } else {
                     result.innerHTML = 'Invalid request! Check if the fields are valid.';
-                    if ( result.classList.contains('alert-success')){
-                        result.classList.remove('alert-success')
-                        result.classList.add('alert-danger');
+                    if ( result.classList.contains('alert alert-success')){
+                        result.classList.remove('alert alert-success')
+                        result.classList.add('alert alert-danger');
                     } else {
-                        result.classList.add('alert-danger');
+                        result.classList.add('alert alert-danger');
                     }
                 }
             }

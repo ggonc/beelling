@@ -22,7 +22,7 @@
             <h1>Register</h1>
         </div>
         <div class="col-5 m-auto pt-2 pb-2 text-center">
-            <div id="result"></div>
+            <div id="result" class="alert"></div>
             <form name="form" id="form" action="{% if db %}/update/{{db.id}}/{%else%}/create/{% endif %}" method="post" class="text-start">
                 {% csrf_token %}
                 <div class="form-group mt-4">Name: {{form.Name}}</div>
