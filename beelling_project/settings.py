@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-csj3&8-%(3a%12_=2xndpf2waw+*s4@8%y@1)c&i-w4-$2_$^*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['beelling.azurewebsites.net']
 
@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'beelling_project.wsgi.application'
+# WSGI_APPLICATION = 'beelling_project.wsgi.application'
 
 
 # Database
@@ -78,10 +78,10 @@ WSGI_APPLICATION = 'beelling_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'DB-BEELLING',
-        'USER': 'master@beelling-db',
-        'PASSWORD': os.getenv("DB_PASSWORD"),
-        'HOST': 'beelling-db.postgres.database.azure.com',
+        'NAME': 'beelling-crud',
+        'USER': 'beellingadmin@beelling-crud',
+        'PASSWORD': 'Azure@crudserver789',
+        'HOST': 'beelling-crud.postgres.database.azure.com',
         'PORT': '5432',
         "OPTIONS": {"sslmode": "require"}
     }
@@ -122,9 +122,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
