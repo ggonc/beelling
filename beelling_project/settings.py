@@ -79,9 +79,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'beelling-crud',
-        'USER': 'beellingadmin@beelling-crud',
-        'PASSWORD': 'Azure@crudserver789',
-        'HOST': 'beelling-crud.postgres.database.azure.com',
+        'USER': '[INSERT USER]',
+        'PASSWORD': '[INSERT PASSWORD]',
+        'HOST': '[INSERT HOST]',
         'PORT': '5432',
         "OPTIONS": {"sslmode": "require"}
     }
